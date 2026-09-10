@@ -1,7 +1,7 @@
 # Railway Booking System
 
 ## Overview
-This repository contains the code for the full stack website "Train Travel" aimed at simplifying railway ticket booking and related activities. This was the semester project we developed for our database and information systems lab course.
+This repository contains the code for the full stack website "Train Travel" aimed at simplifying railway ticket booking and related activities.
 
 ## Features
 Our website provides the user with a comprehensive platform where they can login to the account, search for trains based on their requirements and then proceed to to book the ticket which immediately gets added to their account which can be both viewed and downloaded at any point of time.
