@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            display: -webkit-box;
+            flex-direction: column;
+            -webkit-box-orient: vertical;
+            align-items: center;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+            width: 100%;
+            background-color:floralwhite;
+            font-family: cursive;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        .train-item {
+            width: 85%;
+            background-color:blanchedalmond;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border-radius: 25px;
+            margin: 10px;
+            margin-bottom: 100px;
+            page-break-after: always;
+        }
+
+        .train-item-title {
+            display: flex;
+            display: -webkit-box;
+            justify-content: space-between;
+            align-items: center;
+            background-color: bisque;
+            padding: 3px 20px;
+            box-sizing: border-box;
+            border-radius: 25px;
+        }
+
+        p {
+            font-size: 25px;
+            margin: 0;
+        }
+
+        .train-details {
+            display: flex;
+            display: -webkit-box;
+            -webkit-flex-align: center;
+            justify-content: space-between;
+            -webkit-box-pack: justify;
+            align-items: center;
+            padding: 20px 30px;
+        }
+
+        .train-details p {
+            font-size: 18px;
+        }
+
+        .ticket-details {
+            display: flex;
+            display: -webkit-box;
+            flex-direction: column;
+            -webkit-box-orient: vertical;
+            align-items: center;
+            -webkit-box-align: center;
+            justify-content: space-around;
+            -webkit-box-pack: justify;
+            padding: 10px 30px 20px;
+        }
+
+        .passenger-details, .booking-details {
+            width: 100%;
+            display: flex;
+            display: -webkit-box;
+            align-items: center;
+            -webkit-box-align: center;
+            justify-content: space-around;
+            -webkit-box-pack: justify;
+            padding: 15px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Train Ticket Details</h1>
+    {% for passenger in passengers %}
+        <div class="train-item">
+            <div class="train-item-title">
+                <h1>{{ train_number }} {{ train_name }}</h1>
+            </div>
+            <div class="train-item-content">
+                <div class="train-details">
+                    <h2>{{ train_departure }} | {{ source }} | {{ travel_date }}</h2>
+                    <h2>{{ train_arrival }} | {{ destination }} | {{ arrival_date }}</h2>
+                </div>
+                <div class="ticket-details">
+                    <div class="passenger-details">
+                        <p><b>Passenger Name:</b> {{ passenger[0] }}</p>
+                        <p><b>Age:</b> {{ passenger[1] }}</p>
+                        <p><b>Sex:</b> {{ passenger[2] }}</p>
+                        <p><b>Ticket ID:</b> {{ passenger[5] }}</p>
+                    </div>
+                    <div class="booking-details">
+                        <p><b>Ticket Type:</b> {{ ticket_type }}</p>
+                        <p><b>Coach No:</b> {{ passenger[3] }}</p>
+                        <p><b>Berth No:</b> {{ passenger[4] }}</p>
+                        <p><b>Amount:</b> {{ amount }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {%endfor%}
+</body>
+</html>

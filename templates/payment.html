@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='train.png') }}" type="image/x-icon">
+    <title>Train Travel</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='trainLogo.png') }}">
+                <div class="title">
+                    <h1>Train Travel</h1>
+                    <p>One-Stop Destination for all your train bookings</p>
+                </div>
+            </div>
+        </a>
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('booktrain') }}">Book Tickets</a></li>
+                <li><a href="{{ url_for('bookings') }}">My Bookings</a></li>
+                <li><a href="{{ url_for('login') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- {% with messages = get_flashed_messages()%}
+        {% if messages%}
+            {% for message in messages%}
+                <p>{{message}}</p>
+            {%endfor%}
+        {%endif%}
+    {%endwith%} -->
+    <div id="payment">
+        <div class="payment">
+            <h1>Payment Gateway</h1>
+            <p>Amount: ₹ {{amount}} </p>
+            <form action="{{ url_for('success') }}" method="post">
+                <button>Pay Now</button>
+            </form>
+        </div>  
+    </div>
+</body>
+</html>

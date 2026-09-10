@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='train.png') }}" type="image/x-icon">
+    <title>Train Travel</title>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='trainLogo.png') }}">
+            <div class="title">
+                <h1>Train Travel</h1>
+                <p>One-Stop Destination for all your train bookings</p>
+            </div>
+        </div>
+    </nav>
+    <div id="loading">
+        <h1 id="load"></h1>
+        <img src="{{ url_for('static', filename='trainload.png') }}" id="image">
+    </div>
+
+    <script>
+        var timer = setTimeout(function() {
+            document.getElementById('image').remove()
+            document.location.href = "{{url_for('home')}}"
+        }, 1900);
+
+        setTimeout(function() {
+            document.getElementById("load").innerText = "Logging You In..."
+        }, 800);
+    </script>
+</body>
+</html>

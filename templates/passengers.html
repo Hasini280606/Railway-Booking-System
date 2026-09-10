@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='train.png') }}" type="image/x-icon">
+    <title>Train Travel</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='trainLogo.png') }}">
+                <div class="title">
+                    <h1>Train Travel</h1>
+                    <p>One-Stop Destination for all your train bookings</p>
+                </div>
+            </div>
+        </a>
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('booktrain') }}">Book Tickets</a></li>
+                <li><a href="{{ url_for('bookings') }}">My Bookings</a></li>
+                <li><a href="{{ url_for('login') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- {% with messages = get_flashed_messages()%}
+        {% if messages%}
+            {% for message in messages%}
+                <p>{{message}}</p>
+            {%endfor%}
+        {%endif%}
+    {%endwith%} -->
+    <div id="passengers">
+        <h1>Enter Passenger Details</h1>
+        <div class="passenger-details">
+            <form action="{{ url_for('payment') }}" method="POST" onsubmit="return validateForm()">
+                <table>
+                    <tr>
+                        <th><h2>Passenger 1:</h2></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Name">Passenger Name:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="passenger_name" id="Name" required autocomplete="name">
+                        </td>
+                        <td>
+                            <label for="Age">Age:</label>
+                        </td>
+                        <td>
+                            <input type="number" name="age" id="Age" required>
+                        </td>
+                        <td>
+                            <label for="mobile">Mobile No:</label>
+                        </td>
+                        <td>
+                            <input type="tel" name="mobile_no" id="mobile" maxlength="10" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="adhaar_number">Aadhaar Number:</label>
+                        </td>
+                        <td>
+                            <input type="number" name="adhaar_number" id="adhaar_number" maxlength="12" required>
+                        </td>
+                        <td>
+                            <label for="sex">Sex:</label>
+                        </td>
+                        <td>
+                            <select name="sex" id="sex" required>
+                                <option hidden disabled selected value>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th><h2>Passenger 2:</h2></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Name">Passenger Name:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="passenger_name" id="Name" autocomplete="name">
+                        </td>
+                        <td>
+                            <label for="Age">Age:</label>
+                        </td>
+                        <td>
+                            <input type="number" name="age" id="Age">
+                        </td>
+                        <td>
+                            <label for="mobile">Mobile No:</label>
+                        </td>
+                        <td>
+                            <input type="tel" name="mobile_no" id="mobile" maxlength="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="adhaar_number">Aadhaar Number:</label>
+                        </td>
+                        <td>
+                            <input type="number" name="adhaar_number" id="adhaar_number" maxlength="12">
+                        </td>
+                        <td>
+                            <label for="sex">Sex:</label>
+                        </td>
+                        <td>
+                            <select name="sex" id="sex">
+                                <option hidden disabled selected value>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th><h2>Passenger 3:</h2></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Name">Passenger Name:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="passenger_name" id="Name" autocomplete="name">
+                        </td>
+                        <td>
+                            <label for="Age">Age:</label>
+                        </td>
+                        <td>
+                            <input type="number" name="age" id="Age">
+                        </td>
+                        <td>
+                            <label for="mobile">Mobile No:</label>
+                        </td>
+                        <td>
+                            <input type="tel" name="mobile_no" id="mobile" maxlength="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="adhaar_number">Aadhaar Number:</label>
+                        </td>
+                        <td>
+                            <input type="number" name="adhaar_number" id="adhaar_number" maxlength="12">
+                        </td>
+                        <td>
+                            <label for="sex">Sex:</label>
+                        </td>
+                        <td>
+                            <select name="sex" id="sex">
+                                <option hidden disabled selected value>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+        
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th><h2>Passenger 4:</h2></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Name">Passenger Name:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="passenger_name" id="Name" autocomplete="name">
+                        </td>
+                        <td>
+                            <label for="Age">Age:</label>
+                        </td>
+                        <td>
+                            <input type="number" name="age" id="Age">
+                        </td>
+                        <td>
+                            <label for="mobile">Mobile No:</label>
+                        </td>
+                        <td>
+                            <input type="tel" name="mobile_no" id="mobile" maxlength="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="adhaar_number">Aadhaar Number:</label>
+                        </td>
+                        <td>
+                            <input type="number" name="adhaar_number" id="adhaar_number" maxlength="12">
+                        </td>
+                        <td>
+                            <label for="sex">Sex:</label>
+                        </td>
+                        <td>
+                            <select name="sex" id="sex">
+                                <option hidden disabled selected value>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <div class="proceed-btn"><button type="submit">Proceed</button></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            const passengers = document.querySelectorAll('.passenger-details form');
+            console.log(passengers)
+            let isValid = true;
+
+            passengers.forEach(passenger => {
+                const name = passenger.querySelector('[name="passenger_name"]');
+                const age = passenger.querySelector('[name="age"]');
+                const mobileNo = passenger.querySelector('[name="mobile_no"]');
+                const aadhaarNo = passenger.querySelector('[name="adhaar_number"]');
+                const gender = passenger.querySelector('[name="sex"]');
+                console.log(name)
+                
+                // Validate Passenger Name and Age (Age is mandatory if Name is entered)
+                if (name.value.trim() !== '' && (!age.value.trim() || !mobileNo.value.trim() || !aadhaarNo.value.trim() || !gender.value.trim() )) {
+                    alert("Please fill all details.");
+                    isValid = false;
+                }
+
+                // Validate Mobile Number (should be 10 digits long)
+                if (mobileNo.value.length !== 10 || !/^\d{10}$/.test(mobileNo.value)) {
+                    alert("Mobile Number should be 10 digits long.");
+                    isValid = false;
+                }
+
+                // Validate Aadhaar Number (should be 12 digits long)
+                if (aadhaarNo.value.length !== 12 || !/^\d{12}$/.test(aadhaarNo.value)) {
+                    alert("Aadhaar Number should be 12 digits long.");
+                    isValid = false;
+                }
+
+                // Validate Gender (should be one of the options)
+                if (gender.value !== 'Male' && gender.value !== 'Female' && gender.value !== 'Other') {
+                    alert("Please select a valid gender (Male, Female, or Other).");
+                    isValid = false;
+                }
+            });
+
+            return isValid; // Return false to prevent form submission if validation fails
+        }
+    </script>
+
+</body>
+</html>

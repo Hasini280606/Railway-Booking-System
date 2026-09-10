@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='train.png') }}" type="image/x-icon">
+    <title>Train Travel</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('login') }}">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='trainLogo.png') }}">
+                <div class="title">
+                    <h1>Train Travel</h1>
+                    <p>One-Stop Destination for all your train bookings</p>
+                </div>
+            </div>
+        </a>
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="{{ url_for('login') }}">Sign in</a></li>
+                <li><a href="{{ url_for('register') }}">Create Account</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- {% with messages = get_flashed_messages()%}
+        {% if messages%}
+            {% for message in messages%}
+                <p>{{message}}</p>
+            {%endfor%}
+        {%endif%}
+    {%endwith%} -->
+    <div id="login">
+        <div class="login">
+            <h1>Login</h1>
+            <form action="{{ url_for('login') }}" method="POST">
+                <div class="form-group">
+                    <label for="userId">UserID:</label>
+                    <input type="text" id="userId" name="userId" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+        </div>
+    </div>
+</body>
+</html>

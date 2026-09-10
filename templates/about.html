@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='train.png') }}" type="image/x-icon">
+    <title>Train Travel</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='trainLogo.png') }}">
+                <div class="title">
+                    <h1>Train Travel</h1>
+                    <p>One-Stop Destination for all your train bookings</p>
+                </div>
+            </div>
+        </a>
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('booktrain') }}">Book Tickets</a></li>
+                <li><a href="{{ url_for('bookings') }}">My Bookings</a></li>
+                <li><a href="{{ url_for('login') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- {% with messages = get_flashed_messages()%}
+        {% if messages%}
+            {% for message in messages%}
+                <p>{{message}}</p>
+            {%endfor%}
+        {%endif%}
+    {%endwith%} -->
+    <div id="about">
+        <h1>About</h1>
+        <p>This is an Online Railway Reservation System, developed by a team of IIT Indore Students for their Database Minor Project. Users can create an account and register themselves on this portal. Then they can log in to their account and book train tickets or view their existing bookings. For booking tickets, they can go to the Book Tickets section and first search for the required train by selecting the source and destination stations and their date of journey. Then, a list of available trains with the no of available seats is shown, from which users can select the desired train and ticket type. Then, they can enter the passenger details and proceed to payment. After successful payment, they can view or download their ticket. They can also view their past and upcoming journeys in the My Bookings section, and download the tickets. It is a user-friendly and easy-to-use website that offers the required services efficiently. It is made using HTML, CSS, JavaScript, Flask and MySQL. </p>
+        <div class="about-us">
+            <h2>Team</h2>
+            <div class="team-tabs">
+                <div class="member">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D35AQEZVc-Xf-gCSA/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1725355673487?e=1734015600&v=beta&t=rqcuICH6gwG078h4FiwY8QqsDQHCbFtuvfeR5ZZBc3o">
+                    <h3>Chanakya</h3>
+                    <a href="https://www.linkedin.com/in/chanakya-cherukumalli-428ba0296/" target="_blank">Check out my Profile</a>
+                </div>
+                <div class="member">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS_lSNw7Ee7u6J7SWu5Ku6BP6H3kMcOI9TFw&s">
+                    <h3>Sreechand</h3>
+                    <a href="https://www.linkedin.com/in/sreechand-rayavarapu-922b58290/" target="_blank">Check out my Profile</a>
+                </div>
+                <div class="member">
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQH8wfbGkVODdw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1711475279279?e=1735171200&v=beta&t=d6YbND279-RosZe6YGB3rH0-VBrfmb48Hm2i4mg9x0g">
+                    <h3>Chandrahasa</h3>
+                    <a href="https://www.linkedin.com/in/chandrahasa-rachakonda-3201a92a6/" target="_blank">Check out my Profile</a>
+                </div>
+                <div class="member">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS_lSNw7Ee7u6J7SWu5Ku6BP6H3kMcOI9TFw&s">
+                    <h3>Tanmai Sai</h3>
+                    <a href="https://www.linkedin.com/in/tanmai-sai-b474b5285/" target="_blank">Check out my Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

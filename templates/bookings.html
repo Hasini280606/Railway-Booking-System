@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='train.png') }}" type="image/x-icon">
+    <title>Train Travel</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='trainLogo.png') }}">
+                <div class="title">
+                    <h1>Train Travel</h1>
+                    <p>One-Stop Destination for all your train bookings</p>
+                </div>
+            </div>
+        </a>
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('booktrain') }}">Book Tickets</a></li>
+                <li><a href="{{ url_for('bookings') }}">My Bookings</a></li>
+                <li><a href="{{ url_for('login') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- {% with messages = get_flashed_messages()%}
+        {% if messages%}
+            {% for message in messages%}
+                <p>{{message}}</p>
+            {%endfor%}
+        {%endif%}
+    {%endwith%} -->
+    <div id="mybooking">
+        <h1>My Bookings</h1>
+        <div class="heading">
+            <div class="heading1 active" onclick="makeActive('current-bookings')">
+                <h2>Upcoming Journeys</h2>
+            </div>
+            <div class="heading2" onclick="makeActive('past-bookings')">
+                <h2>Past Journeys</h2>
+            </div>
+        </div>
+        <div class="current-bookings active-tab">
+            {% for current_ticket in current_tickets %}
+                <form action="{{ url_for('printTicket', filename=current_ticket[2]) }}" method="post" target="_blank">    
+                    <input type="hidden" name="ticket_cluster" id="ticket_cluster" value="{{ current_ticket[2] }}">
+                    <div class="booking-item">
+                        <div class="booking-item-title">
+                            <h2>{{ current_ticket[0] }} {{ current_ticket[1] }}</h2>
+                        </div>
+                        <div class="booking-item-content">
+                            <div class="train-details">
+                                <h3>{{ current_ticket[6] }} | {{ current_ticket[8] }} | {{ current_ticket[4] }}</h3>
+                                <h3>{{ current_ticket[7] }} | {{ current_ticket[9] }} | {{ current_ticket[5] }}</h3>
+                            </div>
+                            <div class="booking-details">
+                                <p><b>Ticket Type:</b> {{ current_ticket[3] }}</p>
+                                <button>Print Ticket</button>
+                            </div>
+                        </div>
+                    </div>     
+                </form>
+            {%endfor%}
+        </div>
+        <div class="past-bookings">
+            {% for past_ticket in past_tickets %}
+                <form action="{{ url_for('printTicket', filename=past_ticket[2]) }}" method="post" target="_blank">    
+                    <input type="hidden" name="ticket_cluster" id="ticket_cluster" value="{{ past_ticket[2] }}">
+                    <div class="booking-item">
+                        <div class="booking-item-title">
+                            <h2>{{ past_ticket[0] }} {{ past_ticket[1] }}</h2>
+                        </div>
+                        <div class="booking-item-content">
+                            <div class="train-details">
+                                <h3>{{ past_ticket[6] }} | {{ past_ticket[8] }} | {{ past_ticket[4] }}</h3>
+                                <h3>{{ past_ticket[7] }} | {{ past_ticket[9] }} | {{ past_ticket[5] }}</h3>
+                            </div>
+                            <div class="booking-details">
+                                <p><b>Ticket Type:</b> {{ past_ticket[3] }}</p>
+                                <button>Print Ticket</button>
+                            </div>
+                        </div>
+                    </div>     
+                </form>
+            {%endfor%}
+        </div>
+    </div>
+
+    <script>
+        function makeActive(tabname) {
+            document.getElementsByClassName("heading1")[0].classList.remove("active");
+            document.getElementsByClassName("heading2")[0].classList.remove("active");
+            event.currentTarget.classList.add("active");
+
+            document.getElementsByClassName("current-bookings")[0].classList.remove("active-tab")
+            document.getElementsByClassName("past-bookings")[0].classList.remove("active-tab")
+            document.getElementsByClassName(tabname)[0].classList.add("active-tab")
+        }
+    </script>
+</body>
+</html>

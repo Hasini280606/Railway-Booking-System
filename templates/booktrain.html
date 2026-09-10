@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='train.png') }}" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/d4cc973bee.js" crossorigin="anonymous"></script>
+    <title>Train Travel</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='trainLogo.png') }}">
+                <div class="title">
+                    <h1>Train Travel</h1>
+                    <p>One-Stop Destination for all your train bookings</p>
+                </div>
+            </div>
+        </a>
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('booktrain') }}">Book Tickets</a></li>
+                <li><a href="{{ url_for('bookings') }}">My Bookings</a></li>
+                <li><a href="{{ url_for('login') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- {% with messages = get_flashed_messages()%}
+        {% if messages%}
+            {% for message in messages%}
+                <p>{{message}}</p>
+            {%endfor%}
+        {%endif%}
+    {%endwith%} -->
+    <div id="booktrain">
+        <div class="image">
+            <img src="{{ url_for('static', filename='trainLogo.png') }}">
+        </div>
+        <div class="search">
+            <form action="/trainlist" method="POST">
+                <table>
+                    <caption>
+                        <h2>Search Trains</h2>
+                    </caption>
+                    <tr>
+                        <td>
+                            <label for="from">From: </label>
+                        </td>
+                        <td>
+                            <select id="from" name="source" onchange="updateDestinationOptions()" required>
+                                <option hidden disabled selected value> Select Source </option>
+                                {% for station in stations %}
+                                    <option value="{{ station[1] }} {{ station[0] }}">{{ station[0] }}</option>
+                                {% endfor %}
+                            </select>
+                            <datalist id="stations">
+                                <option></option>
+                                <option value="Mumbai Central">Mumbai Central</option>
+                                <option value="New Delhi">New Delhi</option>
+                                <option value="Howrah Junction">Howrah Junction</option>
+                                <option value="Chennai Central">Chennai Central</option>
+                                <option value="Bengaluru City">Bengaluru City</option>
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="to">To: </label>
+                        </td>
+                        <td>
+                            <select id="to" name="destination" onchange="updateSourceOptions()" required>
+                                <option hidden disabled selected value> Select Destination </option>
+                                {% for station in stations %}
+                                    <option value="{{ station[1] }} {{ station[0] }}">{{ station[0] }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="date">Date: </label>
+                        </td>
+                        <td>
+                            <input type="date" name="journey_date" id="date" min="{{ min_date }}" max="{{ max_date }}" required><br>
+                        </td>
+                    </tr>
+                </table>
+                <button>Check Trains</button>
+            </form>
+            <button id="chat-button" onclick="openChat()"><i class="fa-solid fa-message"></i></button>
+        </div>
+    </div>
+
+    <div class="chatbot-container closed-chat">
+        <div id="chat-window">
+            <div id="close">Chat Bot<i class="fas fa-close" onclick="closeChat()"></i></div>
+            <div id="chat-box"></div>
+            <input type="text" id="userInput" placeholder="Type a message..." />
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+    
+    <script>
+        function updateDestinationOptions() {
+            const src = document.getElementById("from").value;
+            const dest = document.getElementById("to");
+            for (let i = 0; i < dest.options.length; i++) {
+                dest.options[i].disabled = dest.options[i].value === src;
+            }
+        }
+
+        function updateSourceOptions() {
+            const src = document.getElementById("from");
+            const dest = document.getElementById("to").value;
+            for (let i = 0; i < src.options.length; i++) {
+                src.options[i].disabled = src.options[i].value === dest;
+            }
+        }
+
+        function openChat() {
+            const chatbtn = document.getElementById("chat-button")
+            const chatbox = document.getElementsByClassName("chatbot-container")[0]
+            const search = document.getElementsByClassName("search")[0]
+            chatbox.classList.remove("closed-chat")
+            chatbox.classList.add("active-chat")
+            chatbtn.classList.add("hidden")
+            search.style["align-items"] = "start";
+        }
+
+        function closeChat() {
+            const chatbtn = document.getElementById("chat-button")
+            const chatbox = document.getElementsByClassName("chatbot-container")[0]
+            const search = document.getElementsByClassName("search")[0]
+            chatbox.classList.remove("active-chat")
+            chatbox.classList.add("closed-chat")
+            setTimeout(function() {
+                chatbtn.classList.remove("hidden")
+                search.style["align-items"] = "center";
+            }, 300);
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('#sendButton').addEventListener('click', function() {
+                const userMessage = document.querySelector('#userInput').value;
+                if (userMessage.trim() === '') return;
+                const chatBox = document.querySelector('#chat-box');
+                chatBox.innerHTML += `<div>User: ${userMessage}</div>`;
+                document.querySelector('#userInput').value = ''; 
+                fetch('/chatbot', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: userMessage }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    chatBox.innerHTML += `<div>Bot: ${data.response}</div>`;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                })
+                .catch(error => {
+                    chatBox.innerHTML += `<div>Bot: Sorry, there was an error processing your request.</div>`;
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

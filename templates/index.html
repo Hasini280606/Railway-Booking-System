@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='train.png') }}" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/d4cc973bee.js" crossorigin="anonymous"></script>
+    <title>Train Travel</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='trainLogo.png') }}">
+                <div class="title">
+                    <h1>Train Travel</h1>
+                    <p>One-Stop Destination for all your train bookings</p>
+                </div>
+            </div>
+        </a>
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('booktrain') }}">Book Tickets</a></li>
+                <li><a href="{{ url_for('bookings') }}">My Bookings</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- {% with messages = get_flashed_messages()%}
+        {% if messages%}
+            {% for message in messages%}
+                <p>{{message}}</p>
+            {%endfor%}
+        {%endif%}
+    {%endwith%} -->
+    <div id="home">
+        <h1>Welcome to Train Travel, {{username}}!</h1>
+        <div class="tabs">
+            <div class="booktrain">
+                <a href="{{ url_for('booktrain') }}" class="booktrain-link">
+                    <i class="fa-solid fa-train-subway"></i>
+                    <h2>Book Tickets</h2>
+                </a>
+            </div>                
+            <div class="mybookings">
+                <a href="{{ url_for('bookings') }}" class="mybookings-link">
+                    <i class="fa-solid fa-ticket"></i>
+                    <h2>My Bookings</h2>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

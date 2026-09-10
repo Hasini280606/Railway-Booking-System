@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='train.png') }}" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/d4cc973bee.js" crossorigin="anonymous"></script>
+    <title>Train Travel</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='trainLogo.png') }}">
+                <div class="title">
+                    <h1>Train Travel</h1>
+                    <p>One-Stop Destination for all your train bookings</p>
+                </div>
+            </div>
+        </a>
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('booktrain') }}">Book Tickets</a></li>
+                <li><a href="{{ url_for('bookings') }}">My Bookings</a></li>
+                <li><a href="{{ url_for('login') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- {% with messages = get_flashed_messages()%}
+        {% if messages%}
+            {% for message in messages%}
+                <p>{{message}}</p>
+            {%endfor%}
+        {%endif%}
+    {%endwith%} -->
+    <div id="trainlist">
+        <h1>Available Trains</h1>
+        <form action="/passengers" method="POST" id="train-form">
+            <input type="hidden" name="ticket_type" id="ticket_type" value="">
+            <input type="hidden" name="train_number" id="train_number" value="">
+            <input type="hidden" name="train_name" id="train_name" value="">
+            <input type="hidden" name="amount" id="amount" value="">
+            {% for train in trains %}
+                <div class="train-item">
+                    <div class="train-item-title">
+                        <h2>{{ train[1] }} {{ train[0] }}</h2>
+                        <p>Train Schedule</p>
+                    </div>
+                    <div class="train-item-content">
+                        <div class="train-details">
+                            <h3>{{ train[4] }} | {{ source }} | {{ travel_date }}</h3>
+                            <p>------- {{ journey_time }} -------</p>
+                            <h3>{{ train[5] }} | {{ destination }} | {{ arrival_date }}</h3>
+                        </div>
+                        <div class="ticket-details">
+                            <div class="AC" onclick="SelectAC('{{train[2]}}')">
+                                <h4>AC</h4>
+                                <p>Check Availability <i class="fa-solid fa-arrows-rotate"></i></p>
+                            </div>
+                            <div class="General" onclick="SelectGen('{{train[3]}}')">
+                                <h4>General</h4>
+                                <p id="general-ticket">Check Availability <i class="fa-solid fa-arrows-rotate"></i></p>
+                            </div>
+                        </div>
+                        <button disabled class="train-button" onclick="SubmitForm('{{train[1]}}', '{{train[0]}}', '{{train[6]}}')">Book Now</button>
+                    </div>
+                </div>
+            {% endfor %}  
+        </form>      
+    </div>
+
+    <script>
+        var ac = document.getElementsByClassName("AC")
+        var gen = document.getElementsByClassName("General")
+        
+        function SelectAC(ac_tickets) {
+            for (g of gen) {
+                g.classList.remove("active-ticket")
+            }
+            for (a of ac) {
+                a.classList.remove("active-ticket")
+            }
+            event.currentTarget.classList.add("active-ticket")
+            event.currentTarget.children[1].innerHTML="Available " + ac_tickets
+            event.currentTarget.children[1].style.color = "green"
+            DisableButton()
+            document.getElementById("ticket_type").setAttribute("value", "AC")
+        }
+        
+        function SelectGen(gen_tickets) {
+            for (g of gen) {
+                g.classList.remove("active-ticket")
+            }
+            for (a of ac) {
+                a.classList.remove("active-ticket")
+            }
+            event.currentTarget.classList.add("active-ticket")
+            event.currentTarget.children[1].innerHTML="Available " + gen_tickets
+            event.currentTarget.children[1].style.color = "green"
+            DisableButton()
+            document.getElementById("ticket_type").setAttribute("value", "General")
+        }
+
+        function DisableButton() {
+            const buttons = document.getElementsByClassName('train-button')
+            for (btn of buttons) {
+                btn.disabled = true
+                sibling = btn.previousElementSibling
+                children = sibling.children
+                if (children[0].classList.contains('active-ticket') || children[1].classList.contains('active-ticket')) {
+                    btn.disabled = false
+                }
+            }
+        }
+
+        function SubmitForm(train_number, train_name, amount) {
+            document.getElementById('train_number').value = train_number
+            document.getElementById('train_name').value = train_name
+            document.getElementById('amount').value = amount
+            document.getElementById('train-form').submit()
+        }
+        
+    </script>
+</body>
+</html>

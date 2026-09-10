@@ -1,0 +1,841 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color:floralwhite;
+    font-family: cursive;
+}
+
+nav {
+    background-color:beige;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+}
+
+nav .logo {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav img {
+    height: 50px;
+    width: 95px;
+    margin-right: 20px;
+}
+
+nav h1 {
+    color: chocolate;
+    margin: 0;
+}
+
+nav p {
+    font-size: 15px;
+    color:brown;
+    margin: 0;
+}
+
+.nav-buttons ul {
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+.nav-buttons ul li {
+    margin-right: 20px;
+    height: 60px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-buttons ul li a {
+    text-decoration: none;
+    color:orangered;
+}
+
+.nav-buttons ul li:hover {
+    background-color:floralwhite;
+}
+
+/*-----login.html-----*/
+
+#login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+}
+
+.login {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.login h1 {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: calc(100% - 16px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.login a {
+    text-decoration: none;
+    color: orangered;
+}
+
+/*-----register.html------*/
+
+#register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+}
+
+.register {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.register h1 {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: calc(100% - 16px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.register a {
+    text-decoration: none;
+    color: orangered;
+}
+
+/*-------loading.html--------*/
+
+#loading {
+    height: calc(100vh - 80px);
+    overflow: hidden;
+    text-align: center;
+}
+
+#loading img {
+    animation: slide 2s linear 1;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+#load {
+    position: absolute;
+    left: 50%;
+    top: 50vh;
+    transform: translate(-50%,-100%);
+    font-size: 40px;
+    height: 50px;
+    
+}
+
+@keyframes slide {
+    0% {transform: translateX(-1200px);}
+    100% {transform: translateX(1200px);}
+}
+
+/*-----index.html-----*/
+
+#home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#home h1 {
+    font-size: 40px;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.booktrain-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+}
+
+.booktrain {
+    display: block;
+    width: 30%;
+    height: 50vh;
+    background-color: white;
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s;
+}
+
+.booktrain:hover {
+    cursor: pointer;
+    background-color:rgba(250, 250, 53, 0.495);
+    transform: translateY(-10px);
+}
+
+.mybookings {
+    width: 30%;
+    height: 50vh;
+    background-color: white;
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s;
+}
+
+.mybookings-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+}
+
+.mybookings:hover {
+    cursor: pointer;
+    background-color:rgba(244, 190, 53, 0.495);
+    transform: translateY(-10px);
+}
+
+.mybookings i {
+    font-size: 100px;
+    color: #000;
+}
+
+.booktrain i {
+    font-size: 100px;
+    color: #000;
+}
+
+/*-------about.html----------*/
+
+#about h1 {
+    text-align: center;
+    font-size: 40px;
+}
+
+#about p {
+    font-size: 20px;
+    margin: 50px;
+    text-align: justify;
+}
+
+.about-us {
+    padding: 0 50px 20px;
+}
+
+.team-tabs {
+    display: flex;
+    justify-content: space-around;
+}
+
+.member {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color:antiquewhite;
+    border-radius: 20px;
+    color:darkorange;
+}
+
+.member img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.member a {
+    text-decoration: none;
+    font-size: 15px;
+    color:chocolate;
+}
+
+/*-------booktrain.html-------*/
+
+#booktrain {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+}
+
+.image img {
+    scale: 1.5;
+}
+
+.search {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+}
+
+.search form {
+    background-color: white;
+    padding: 30px;
+    padding-top: 20px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.search form h2 {
+    text-align: center;
+    margin: 10px;
+}
+
+.search form input {
+    margin: 10px;
+}
+
+.search form select {
+    margin: 10px;
+}
+
+#from option:disabled {
+    display: none;
+}
+
+#to option:disabled {
+    display: none;
+}
+
+.search form button {
+    background-color:deepskyblue;
+    padding: 10px;
+    margin-top: 10px;
+    border-width: 0;
+    border-radius: 8px;
+}
+
+.search form button:hover {
+    background-color: rgb(65, 244, 29);
+    box-shadow: 0px 3px 5px gray;
+    cursor: pointer;
+}
+
+#chat-button {
+    position: fixed;
+    bottom: 40px;
+    right: 70px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: coral;
+    z-index: 1;
+}
+
+#chat-button:hover {
+    background-color: chocolate;
+}
+
+#chat-button i {
+    font-size: 25px;
+}
+
+.chatbot-container {
+    position: fixed; 
+    bottom: 0px;
+    right: 20px;
+    width: 250px;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s;
+}
+
+.chatbot-container.active-chat {
+    display: flex;
+    transform: translateY(0px);
+}
+
+.chatbot-container.closed-chat {
+    transform: translateY(500px);
+}
+
+.hidden {
+    display: none;
+}
+
+#chat-window {
+    padding: 10px;
+    flex-grow: 1;
+    overflow-y: auto;
+    height: 300px;
+}
+
+#close {
+    display: flex;
+    justify-content:space-between;
+}
+
+#close i {
+    cursor: pointer;
+    font-size: 25px;
+}
+
+#chat-box {
+    margin-bottom: 10px;
+}
+
+#userInput {
+    width: calc(100% - 60px);
+    padding: 5px;
+}
+
+#sendButton {
+    width: 50px;
+    padding: 5px;
+}
+
+@keyframes scroll {
+    0% {transform: translateY(500px);}
+    100% {transform: translateX(0px);}
+}
+
+/*-------trainlist.html------*/
+
+#trainlist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#trainlist form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.train-item {
+    width: 80%;
+    background-color:blanchedalmond;
+    box-sizing: border-box;
+    border-radius: 25px;
+    margin: 20px;
+}
+
+.train-item-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: bisque;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-radius: 25px;
+}
+
+.train-item-title p {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.train-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.train-details p {
+    font-size: 18px;
+}
+
+.ticket-details {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.AC, .General {
+    width: 20%;
+    background-color: cornsilk;
+    text-align: center;
+    border-radius: 20px;
+    margin-right: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.AC p, .General p {
+    margin: 10px;
+}
+
+h4 {
+    margin: 0;
+}
+
+.active-ticket {
+    background-color:gold;
+}
+
+.train-item-content button {
+    width: 10%;
+    margin: 20px 30px;
+    background-color:coral;
+    border-radius: 10px;
+}
+
+.train-item-content button:disabled, .train-item-content button:disabled:hover {
+    background-color:burlywood;
+}
+
+.train-item-content button:hover {
+    background-color: chocolate;
+}
+
+/*------passengers.html------*/
+
+#passengers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.passenger-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.passenger-details table {
+    background-color:oldlace;
+    padding: 20px;
+    padding-top: 0;
+    margin: 20px;
+    width: 100%;
+    border-radius: 10px;
+    border-spacing: 0 15px;
+}
+
+.passenger-details table h2 {
+    margin: 0;
+}
+
+.proceed-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.passenger-details button {
+    width: 30%;
+    padding: 10px;
+    background-color: coral;
+    border-width: 0;
+    border-radius: 8px;
+}
+
+.passenger-details button:hover {
+    background-color: chocolate;
+}
+
+/*--------payment.html-------*/
+
+#payment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+}
+
+.payment {
+    background-color:antiquewhite;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.payment h1 {
+    margin: 0;
+}
+
+.payment p {
+    font-size: 30px;
+}
+
+.payment button {
+    background-color: coral;
+    border-width: 0;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.payment button:hover {
+    background-color: chocolate;
+}
+
+.payment a {
+    text-decoration: none;
+    color: white;
+}
+
+/*--------success.html-------*/
+
+#success {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-booking {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-booking p {
+    font-size: 20px;
+}
+
+.success-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+}
+
+.success-buttons button {
+    width: 50%;
+    background-color: coral;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.success-buttons button:hover {
+    background-color: chocolate;
+}
+
+.success-buttons a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+}
+
+/*--------bookings.html------*/
+
+#mybooking {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.heading {
+    display: flex;
+    flex-direction: row;
+    background-color:cornsilk;
+    width: 75%;
+    margin-bottom: 20px;
+}
+
+.heading1 {
+    width: 50%;
+    cursor: pointer;
+}
+
+.heading2 {
+    width: 50%;
+    cursor: pointer;
+}
+
+.active {
+    background-color:burlywood;
+}
+
+.current-bookings, .past-bookings {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 75%;
+    background-color:navajowhite;
+    margin-bottom: 20px;
+}
+
+.active-tab {
+    display: flex;
+}
+
+#mybooking form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.booking-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color:blanchedalmond;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 2px black solid;
+}
+
+.booking-item-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: bisque;
+    padding: 3px 20px;
+    border-radius: 21px;
+    border: 2px black solid;
+}
+
+.booking-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px 20px;
+}
+
+.booking-details p {
+    font-size: 18px;
+    margin: 0;
+}
+
+.booking-details button {
+    width: 20%;
+    padding: 10px;
+    background-color: coral;
+    border-width: 0;
+    border-radius: 8px;
+}
+
+.booking-details button:hover {
+    background-color: chocolate;
+}
